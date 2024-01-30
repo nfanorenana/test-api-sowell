@@ -1,0 +1,11 @@
+require "test_helper"
+
+<% module_namespacing do -%>
+class <%= class_name %>Test < ActiveSupport::TestCase
+  # context 'truth' do
+  #   should 'be true' do
+  #     assert true
+  #   end
+  # end
+end
+<% end -%>

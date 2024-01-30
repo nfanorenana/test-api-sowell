@@ -1,0 +1,9 @@
+<% module_namespacing do -%>
+class <%= class_name %>Resource < ApplicationResource
+  # NOTE: Add attributes to expose like this
+  # attribute :first_attribute, :type
+
+  # NOTE: Add relationships like this
+  # belongs_to :parent
+end
+<% end -%>

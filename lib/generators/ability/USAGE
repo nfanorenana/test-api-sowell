@@ -1,0 +1,9 @@
+Description:
+    Generates an ability and its test for a resource
+
+Example:
+    bin/rails generate ability Thing
+
+    This will create:
+        app/abilities/thing_ability.rb
+        test/abilities/thing_ability_test.rb

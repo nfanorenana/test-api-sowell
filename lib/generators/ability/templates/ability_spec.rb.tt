@@ -1,0 +1,28 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+require "spec_helper"
+require "cancan/matchers"
+
+<% module_namespacing do -%>
+Rspec.describe <%= class_name %>Ability do
+  subject(:ability) { <%= class_name %>Ability.new(user) }
+  let(:user) { nil }
+  let(:company) { create(:<%= singular_table_name %>) }
+
+  context 'a guest' do
+    it "cannot create" do
+      expect(ability).not_to be_able_to(:create, <%= class_name %>)
+    end
+    it "cannot read" do
+      expect(ability).not_to be_able_to(:read, <%= class_name %>)
+    end
+    it "cannot update" do
+      expect(ability).not_to be_able_to(:update, <%= class_name %>)
+    end
+    it "cannot destroy" do
+      expect(ability).not_to be_able_to(:destroy, <%= class_name %>)
+    end
+  end
+end
+<% end -%>

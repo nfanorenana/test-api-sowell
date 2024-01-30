@@ -1,0 +1,57 @@
+en:
+  errors:
+    issue_report:
+      blank_talk: "Le paramètre 'talks' est requis"
+    otp:
+      unprocessable: "Le mot de passe à usage unique (OTP) n'a pas pu être généré"
+      unauthorized: "Les identifiants sont incorrects ou l'utilisateur ne peut pas se connecter avec un OTP"
+    rescueable:
+      bad_request: "La requête est incorrecte/incompréhensible"
+      forbidden: "L'utilisateur est reconnu mais ne peut pas réaliser cette action"
+      not_found: "La resource demandée est introuvable"
+      unauthorized: "Cette action requiert une authorisation"
+      unprocessable_entity: "Les paramètres n'ont pas pu être traités"
+    sign_in:
+      unauthorized: "Les identifiants sont incorrects"
+      forbidden: "L'utilisateur est reconnu mais n'a pas les rôles requis"
+    tokenable:
+      expired: "Le token doit être renouvellé"
+      invalid: "Le token est absent ou n'a pas pu être interprété"
+  validations:
+    common:
+      email_presence: "Le champ email est requis"
+      name_presence: "Le champ name est requis"
+      recurrence_presence: "Le champ recurrence est requis"
+      recurrence_absence: "Le champ recurrence doit être absent"
+      belonging_to_company: "Doit appartenir à la même company"
+    checkpoint:
+      question_presence: "Le champ question est requis"
+      incompatible_issue_type_and_checklist: "doit être défini avec un issue_type et une checklist d'une même company"
+    issue_report:
+      housing_type_has_spot: "doit être défini si la localisation est de nature 'housing' (logement)"
+      spot_and_place_are_related: "doit être au sein de la place liée au signalement"
+      talks_contains_only_text: "should être au format texte"
+    role:
+      common:
+        company_presence: "ne peut pas être ajouté sur un utilisateur sans company"
+        sector_company: "ne peut pas être ajouté sur cet utilisateur issu d'une autre company"
+        sector_absence: "ne peut pas être ajouté avec un secteur"
+        sector_presence: "ne peut pas être ajouté sans secteur"
+      superadmin:
+        company_absence: "ne peut pas être ajouté avec un secteur"
+      uniqueness: "ne peut pas être ajouté plus d'une fois"
+    visit_schedule:
+      invalide_due_at: "doit être fixé avec une date d'échéance sur le futur"
+      incompatible_place_and_checklist: "doit être défini avec la place et le checklist de la même company"
+    visit_report:
+      checkpoints_not_complete: "doivent tous avoir été répondus"
+      invalid_checkpoint_status: "doivent être ok, ko ou non-concerné"
+    tmp_file:
+      resource_id_presence: "resource_id doit être défini"
+      resource_type_presence: "resource_type doit être défini"
+      file_data_presence: "file_data doit être défini"
+      filename_presence: "filename doit être défini"
+    place:
+      zip_presence: "zip doit être défini"
+      city_presenece: "city doit être défini"
+      country: "country doit être défini"

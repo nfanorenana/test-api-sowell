@@ -1,0 +1,15 @@
+{
+    "environments": {
+        "test": {
+            "addons": [
+                "heroku-postgresql:in-dyno"
+            ],
+            "env": {
+                "JWT_SECRET": "a_secret",
+                "POSTMARK_URL": "https://postmark.fake",
+                "POSTMARK_PASSWORD_RECOVERY_TEMPLATE_V2": "yyyyyyyy",
+                "POSTMARK_API_KEY": "fake_key"
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<% module_namespacing do -%>
+  class <%= class_name %>Serializer
+    include JSONAPI::Serializer
+    # NOTE: Add attributes to serialize like this
+    # attributes :first_attribute, :second_attribute
+
+    # NOTE: Add serializable relationships like this
+    # belongs_to :parent
+  end
+  <% end -%>

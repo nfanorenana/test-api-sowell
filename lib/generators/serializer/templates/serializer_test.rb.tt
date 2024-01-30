@@ -1,0 +1,41 @@
+# frozen_string_literal: true
+
+require 'test_helper'
+
+<% module_namespacing do -%>
+class <%= class_name %>SerializerTest < ActionDispatch::IntegrationTest
+  context '#get request' do
+    setup do
+      @user = create(:user, email: 'superadmin@email.com', company: nil)
+      @user.add_role! :superadmin
+
+      #TODO: Relationship instances must be made manually
+      @<%= singular_table_name %> = create(:<%= singular_table_name %>, id: 1234)
+    end
+
+    should 'provide serialized attributes' do
+      get <%= show_helper %>, headers: authorization_header(@user), as: :json
+
+      data = JSON.parse(response.body)['data']
+      assert_equal '1234', data['id']
+      assert_equal '<%= singular_table_name %>', data['type']
+
+      attributes = data['attributes']
+      #TODO: Add attributes assertion here like this
+      # assert_equal 'MyString', attributes['name']
+    end
+
+    #NOTE: Uncomment for testing serialized relationships
+    # should 'provide serialized relationships' do
+    #   get <%= show_helper %>, headers: authorization_header(@user), as: :json
+    #
+    #   data = JSON.parse(response.body)['data']
+    # 
+    #   relationships = data['relationships']
+    #   refute_nil relationships['parent']
+    #   assert_equal '4321', relationships['parent']['data']['id']
+    # end
+  end
+
+end
+<% end -%>

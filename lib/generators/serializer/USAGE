@@ -1,0 +1,8 @@
+Description:
+    Generates a serializer for a resouce.
+
+Example:
+    bin/rails generate serializer Thing
+
+    This will create:
+        app/serializers/thing_serializer.rb

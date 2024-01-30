@@ -1,0 +1,52 @@
+<% module_namespacing do -%>
+class <%= controller_class_name %>Controller < ApplicationController
+  before_action :set_<%= singular_table_name %>, only: %i[ show update destroy ]
+
+  # GET <%= route_url %>
+  def index
+    @<%= plural_table_name %> = <%= class_name %>Resource.all(params)
+
+    render jsonapi: @<%= plural_table_name %>
+  end
+
+  # GET <%= route_url %>/1
+  def show
+    render jsonapi: @<%= singular_table_name %>
+  end
+
+  # POST <%= route_url %>
+  def create
+    @<%= singular_table_name %> = <%= class_name %>Resource.build(params)
+
+    if @<%= orm_instance.save %>
+      render jsonapi: @<%= singular_table_name %>, status: :created
+    else
+      render jsonapi_errors: @<%= singular_table_name %>, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT <%= route_url %>/1
+  def update
+    if @<%= singular_table_name %>.update_attributes
+      render jsonapi: @<%= singular_table_name %>
+    else
+      render jsonapi_errors: @<%= singular_table_name %>, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE <%= route_url %>/1
+  def destroy
+    @<%= orm_instance.destroy %>
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_<%= singular_table_name %>
+    @<%= singular_table_name %> = <%= class_name %>Resource.find(params)
+  end
+
+  def current_ability
+    @current_ability ||= <%= class_name %>Ability.new(@current_user)
+  end
+end
+  <% end -%>

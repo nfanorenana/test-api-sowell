@@ -1,0 +1,88 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  errors:
+    issue_report:
+      blank_talk: "'talks' param is required"
+    otp:
+      unprocessable: "Could not generate OTP"
+      unauthorized: "The credentials are incorrect or the user cannot authenticate with OTP"
+    rescueable:
+      bad_request: "Bad request"
+      forbidden: "The found user cannot do this action"
+      not_found: "The requested resource was not found"
+      unauthorized: "This action requires authorization"
+      unprocessable_entity: "Params are unprocessable"
+    sign_in:
+      unauthorized: "Valid credentials must be provided"
+      forbidden: "The found user does not have sufficient roles"
+    tokenable:
+      expired: "Token must be renewed"
+      invalid: "Token is missing or unreadable"
+  validations:
+    common:
+      email_presence: "Email is required"
+      name_presence: "Name is required"
+      recurrence_presence: "Recurrence is required"
+      recurrence_absence: "Recurrence can't be filled"
+      belonging_to_company: "Should belong to company"
+    checkpoint:
+      question_presence: "Question is required"
+      incompatible_issue_type_and_checklist: "must be set with issue_type and checklist from same company"
+    issue_report:
+      housing_type_has_spot: "should be present if issue_type's location_type has a housing nature"
+      spot_and_place_are_related: "should be related to place"
+      talks_contains_only_text: "should be text"
+    role:
+      common:
+        company_presence: "role cannot be added on users not belonging to a company"
+        sector_company: "role cannot be added on sector belonging to another company"
+        sector_absence: "role cannot be added with a sector"
+        sector_presence: "role cannot be added without a sector"
+      superadmin:
+        company_absence: "role cannot be added on users belonging to a company"
+      uniqueness: "same role cannot be added twice"
+    visit_schedule:
+      invalide_due_at: "must be set with a due date on future"
+      incompatible_place_and_checklist: "must be set with place and checklist from same company"
+    visit_report:
+      checkpoints_not_complete: "should all be checked"
+      invalid_checkpoint_status: "should be either ok, ko or missing"
+    tmp_file:
+      resource_id_presence: "resource_id should be present"
+      resource_type_presence: "resource_type should be present"
+      file_data_presence: "file_data should be present"
+      filename_presence: "filename should be present"
+    place:
+      zip_presence: "zip should be present"
+      city_presenece: "city should be present"
+      country: "country should be present"
