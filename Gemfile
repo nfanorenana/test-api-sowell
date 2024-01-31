@@ -6,11 +6,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.7.6"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 7.0"
+gem "rails", "7.0.4"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 # Use Puma as the app server
-gem "puma", "~> 5.6"
+gem "puma", "6"
 # Use Active Model has_secure_password
 gem "bcrypt", "~> 3.1.7"
 # Enumerated attributes with I18n and ActiveRecord
@@ -33,6 +33,10 @@ gem "graphiti-rails"
 gem "kaminari"
 # Push images to CDN
 gem "cloudinary"
+# For building XLS files
+gem "spreadsheet"
+# For communication with AWS-S3 compatible services
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Fast implementation of the standard debugger
@@ -46,22 +50,25 @@ group :development, :test do
   # Code formater
   gem "rubocop-rails", "~> 2.16"
   # Fixtures replacement with a straightforward definition syntax
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
   # https://rspec.info/
-  gem 'rspec-rails', ">= 3.9.0"
+  gem "rspec-rails", ">= 3.9.0"
   # Rspec matchers for json api
-  gem 'jsonapi-rspec'
+  gem "jsonapi-rspec"
   # For seeding and creating fake data
   gem "faker"
 end
 
 group :test do
+  gem "rack-test"
   # Cleans db arround each test
   gem "database_cleaner-active_record"
   # For stubbing requests
   gem "webmock"
   # Lets you name your tests and group them together using English.
   gem "shoulda-context"
+  # Cucumber for test
+  gem "cucumber-rails"
 end
 
 group :development do
