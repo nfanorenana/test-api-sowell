@@ -1,3 +1,13 @@
+Boenvenue sur le test 
+Pour installer ruby et son environement:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-22-04
+
+- Après clone du projet
+- Supprimer le fichier Gemfile.lock
+- Lancer bundle install
+- Lancé rails db:setup
+prendre un ticket 
 # SoWell API V2
 ## Rails coding rules
 [Source](https://github.com/thoughtbot/guides/tree/main/rails)
@@ -192,20 +202,3 @@ others' Rails work, look in particular for:
 
 [appraisal]: https://github.com/thoughtbot/appraisal
 [bundler]: http://bundler.io
-
-## Ruby JSON APIs
-
-- Review the recommended practices outlined in Heroku's [HTTP API Design Guide]
-  before designing a new API.
-- Write integration tests for your API endpoints. When the primary consumer of
-  the API is a JavaScript client maintained within the same code base as the
-  provider of the API, write [feature specs]. Otherwise write [request specs].
-
-[http api design guide]: https://github.com/interagent/http-api-design
-[oj]: https://github.com/ohler55/oj
-[feature specs]: https://www.relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec
-[request specs]: https://www.relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec
-
-## How to...
-
-- [Release a Ruby gem](./how-to/release_a_ruby_gem.md)
