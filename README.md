@@ -1,4 +1,4 @@
-Boenvenue sur le test 
+Bienvenue sur le test 
 Pour installer ruby et son environement:
 
 https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-22-04
