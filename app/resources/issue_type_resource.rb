@@ -4,6 +4,7 @@ class IssueTypeResource < ApplicationResource
   attribute :company_id, :integer, only: [:filterable]
   attribute :location_type_id, :integer
 
+  belongs_to :base_location_type
   belongs_to :company
   belongs_to :location_type
   has_many :issue_reports

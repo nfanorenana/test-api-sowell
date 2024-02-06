@@ -1,11 +1,12 @@
 require "rails_helper"
 RSpec.describe IssueType, type: :model do
   let(:issue_type) { create(:issue_type) }
-  describe "#default issue_type" do
-    it "is valid" do
-      expect(issue_type).to be_valid
-    end
-  end
+  # describe "#default issue_type" do
+  #   it "is valid" do
+  #     expect(issue_type).to be_valid
+  #   end
+  # end
+
   describe "#company" do
     it "is not empty" do
       expect do

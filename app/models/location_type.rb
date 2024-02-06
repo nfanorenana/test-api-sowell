@@ -1,7 +1,7 @@
 class LocationType < ApplicationRecord
   include LocationTypeValidatable
 
-  belongs_to :base_location_type, optional: false
+  belongs_to :base_location_type
   belongs_to :company
   has_many :spots, dependent: :destroy
 

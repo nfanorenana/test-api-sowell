@@ -20,9 +20,9 @@ RSpec.describe BaseLocationType, type: :model do
 
     it "is invalid with unauthorized value" do
       expect do
-        base_location_type.depth_level = 'unknown'
+        base_location_type.depth_level = "unknown"
         base_location_type.save!
-      end.to raise_error(ActiveRecord::RecordInvalid)
+      end.to raise_error(ArgumentError)
     end
   end
 end
