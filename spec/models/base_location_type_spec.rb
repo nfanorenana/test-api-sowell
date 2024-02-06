@@ -1,5 +1,5 @@
 require "rails_helper"
-RSpecdescribe BaseLocationType, type: :model do
+RSpec.describe BaseLocationType, type: :model do
   let(:base_location_type) { create(:base_location_type) }
   describe "#name" do
     it "is not empty" do
