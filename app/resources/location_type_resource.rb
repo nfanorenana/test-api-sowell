@@ -4,6 +4,7 @@ class LocationTypeResource < ApplicationResource
   attribute :company_id, :integer, only: [:filterable]
   attribute :nature, :string_enum, allow: LocationType.natures.keys
 
+  belongs_to :base_location_type
   belongs_to :company
   has_many :checklists
   has_many :spots
