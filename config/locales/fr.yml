@@ -30,7 +30,9 @@ en:
     issue_report:
       housing_type_has_spot: "doit être défini si la localisation est de nature 'housing' (logement)"
       spot_and_place_are_related: "doit être au sein de la place liée au signalement"
-      talks_contains_only_text: "should être au format texte"
+      talks_contains_only_text: "doit être au format texte"
+    issue_type:
+      base_location_type_consistency: "doit être de même 'base_location_type' que 'location_type'" 
     role:
       common:
         company_presence: "ne peut pas être ajouté sur un utilisateur sans company"

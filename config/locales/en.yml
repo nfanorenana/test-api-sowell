@@ -62,6 +62,8 @@ en:
       housing_type_has_spot: "should be present if issue_type's location_type has a housing nature"
       spot_and_place_are_related: "should be related to place"
       talks_contains_only_text: "should be text"
+    issue_type:
+      base_location_type_consistency: "shoud have the same 'base_location_type' as 'location_type'" 
     role:
       common:
         company_presence: "role cannot be added on users not belonging to a company"
