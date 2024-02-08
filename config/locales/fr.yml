@@ -47,6 +47,7 @@ en:
       incompatible_location_number_for_visit_schedule: "ne doit avoir qu'un seul location"
       incompatbile_visit_shcedule_location_and_depth_level: "doit être défini avec le même depth level et location"
       unknown_depth_level: "depth_level inconnu"
+      unknown_location: "localisation inconnue"
       incompatible_place_and_checklist: "doit être défini avec la place et le checklist de la même company"
       incompatible_residence_and_checklist: "doit être défini avec la résidence et le checklist de la même company"
       incompatible_spot_and_checklist: "doit être défini avec le spot et le checklist de la même company"

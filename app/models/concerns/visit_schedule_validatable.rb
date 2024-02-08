@@ -51,7 +51,7 @@ module VisitScheduleValidatable
         errors.add(location_type, I18n.t("validations.visit_schedule.incompatible_spot_and_checklist"))
       end
     else
-      errors.add()
+      errors.add(:base, I18n.t("validations.visit_schedule.unknown_location"))
     end
 
   end
