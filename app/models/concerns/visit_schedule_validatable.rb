@@ -39,11 +39,11 @@ module VisitScheduleValidatable
     case location
     when 'place', 'residence'
       if !send("#{location}").nil? && !checklist.nil? && (send("#{location}").company_id != checklist.company_id)
-        errors.add(location_type, I18n.t("validations.visit_schedule.incompatible_place_and_checklist"))
+        errors.add(:base, I18n.t("validations.visit_schedule.incompatible_place_and_checklist"))
       end
     else
       if !send("#{location}").nil? && !checklist.nil? && (!send("#{location}").place.company_id != checklist.company_id)
-        errors.add(location_type, I18n.t("validations.visit_schedule.incompatible_spot_and_checklist"))
+        errors.add(:base, I18n.t("validations.visit_schedule.incompatible_spot_and_checklist"))
       end
     end
   end
