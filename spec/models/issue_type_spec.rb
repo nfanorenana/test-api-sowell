@@ -1,20 +1,16 @@
 require "rails_helper"
 RSpec.describe IssueType, type: :model do
-  let(:issue_type) { create(:issue_type) }
+  let(:base_location_type) { create(:base_location_type) }
+  let(:base_issue_type) { create(:base_issue_type, base_location_type: base_location_type) }
+  let(:company) { create(:company) }
+  let(:location_type) { create(:location_type, base_location_type: base_location_type, company: company) }
+  let(:issue_type) { create(:issue_type, base_issue_type: base_issue_type, location_type: location_type, company: company) }
+
   describe "#default issue_type" do
-  it "is valid" do
-      # base_location_type = create(:base_location_type)
-      # base_issue_type = create(:base_issue_type)
-      # location_type = create(:location_type)
-      expect do
-        issue_type.base_issue_type.base_location_type = issue_type.location_type.base_location_type
-        issue_type.save!
-      end.to be_valid
-      # expect(issue_type).to be_valid
+    it "is valid" do
+      expect(issue_type).to be_valid
     end
   end
-
-
 
   describe "#company" do
     it "is not empty" do
