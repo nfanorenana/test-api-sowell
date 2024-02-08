@@ -1,10 +1,14 @@
 class VisitScheduleResource < ApplicationResource
   attribute :due_at, :datetime
-  attribute :place_id, :integer
   attribute :checklist_id, :integer
+  attribute :place_id, :integer
+  attribute :residence_id, :integer
+  attribute :spot_id, :integer
 
-  belongs_to :place
   belongs_to :checklist
+  belongs_to :place
+  belongs_to :residence
+  belongs_to :spot
 
   filter :due_until, :string do
     eq do |visit_schedules, value|

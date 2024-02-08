@@ -32,7 +32,7 @@ en:
       spot_and_place_are_related: "doit être au sein de la place liée au signalement"
       talks_contains_only_text: "doit être au format texte"
     issue_type:
-      base_location_type_consistency: "doit être de même 'base_location_type' que 'location_type'" 
+      base_location_type_should_be_the_same_for_base_issue_type_and_location_type: "doit être de même 'base_location_type' que 'location_type'" 
     role:
       common:
         company_presence: "ne peut pas être ajouté sur un utilisateur sans company"
@@ -44,7 +44,12 @@ en:
       uniqueness: "ne peut pas être ajouté plus d'une fois"
     visit_schedule:
       invalide_due_at: "doit être fixé avec une date d'échéance sur le futur"
+      incompatible_location_number_for_visit_schedule: "ne doit avoir qu'un seul location"
+      incompatbile_visit_shcedule_location_and_depth_level: "doit être défini avec le même depth level et location"
+      unknown_depth_level: "depth_level inconnu"
       incompatible_place_and_checklist: "doit être défini avec la place et le checklist de la même company"
+      incompatible_residence_and_checklist: "doit être défini avec la résidence et le checklist de la même company"
+      incompatible_spot_and_checklist: "doit être défini avec le spot et le checklist de la même company"
     visit_report:
       checkpoints_not_complete: "doivent tous avoir été répondus"
       invalid_checkpoint_status: "doivent être ok, ko ou non-concerné"
