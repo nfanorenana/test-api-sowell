@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_06_125139) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_08_120949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -151,8 +151,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_125139) do
     t.bigint "agency_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "visit_schedule_id"
     t.index ["agency_id"], name: "index_residences_on_agency_id"
     t.index ["company_id"], name: "index_residences_on_company_id"
+    t.index ["visit_schedule_id"], name: "index_residences_on_visit_schedule_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -180,8 +182,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_125139) do
     t.bigint "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "visit_schedule_id"
     t.index ["location_type_id"], name: "index_spots_on_location_type_id"
     t.index ["place_id"], name: "index_spots_on_place_id"
+    t.index ["visit_schedule_id"], name: "index_spots_on_visit_schedule_id"
   end
 
   create_table "tmp_files", force: :cascade do |t|
@@ -232,8 +236,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_125139) do
     t.bigint "checklist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "residence_id"
+    t.bigint "spot_id"
     t.index ["checklist_id"], name: "index_visit_schedules_on_checklist_id"
     t.index ["place_id"], name: "index_visit_schedules_on_place_id"
+    t.index ["residence_id"], name: "index_visit_schedules_on_residence_id"
+    t.index ["spot_id"], name: "index_visit_schedules_on_spot_id"
   end
 
   add_foreign_key "agencies", "companies"
@@ -258,14 +266,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_125139) do
   add_foreign_key "places", "residences"
   add_foreign_key "residences", "agencies"
   add_foreign_key "residences", "companies"
+  add_foreign_key "residences", "visit_schedules"
   add_foreign_key "roles", "sectors"
   add_foreign_key "roles", "users"
   add_foreign_key "sectors", "companies"
   add_foreign_key "spots", "location_types"
   add_foreign_key "spots", "places"
+  add_foreign_key "spots", "visit_schedules"
   add_foreign_key "users", "companies"
   add_foreign_key "visit_reports", "users", column: "author_id"
   add_foreign_key "visit_reports", "visit_schedules"
   add_foreign_key "visit_schedules", "checklists"
   add_foreign_key "visit_schedules", "places"
+  add_foreign_key "visit_schedules", "residences"
+  add_foreign_key "visit_schedules", "spots"
 end

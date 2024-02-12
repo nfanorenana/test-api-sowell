@@ -6,7 +6,7 @@ module IssueTypeValidatable
   included do
     validates :name, presence: { message: I18n.t("validations.common.name_presence") }
     validate :location_type_should_belong_to_company
-    validate :base_location_type_consistency
+    validate :base_location_type_should_be_the_same_for_base_issue_type_and_location_type
   end
 
   def location_type_should_belong_to_company
@@ -16,9 +16,9 @@ module IssueTypeValidatable
     end
   end
 
-  def base_location_type_consistency
-    if base_issue_type && location_type && base_issue_type&.base_location_type != location_type&.base_location_type
-      errors.add(:base_issue_type, I18n.t("validations.issue_type.base_location_type_consistency"))
+  def base_location_type_should_be_the_same_for_base_issue_type_and_location_type
+    if base_issue_type&.base_location_type != location_type&.base_location_type
+      errors.add(:base_issue_type, I18n.t("validations.issue_type.base_location_type_should_be_the_same_for_base_issue_type_and_location_type"))
     end
   end
 end
