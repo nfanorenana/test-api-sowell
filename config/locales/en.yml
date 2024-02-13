@@ -73,15 +73,21 @@ en:
       superadmin:
         company_absence: "role cannot be added on users belonging to a company"
       uniqueness: "same role cannot be added twice"
+    visit_schedule_or_prop:
+      require_array: "must be an array"
+      incompatible_location_number: "must have only one location"
+      incompatible_location_and_depth_level: "must be set with the same depth level and location"
     visit_schedule:
       invalide_due_at: "must be set with a due date on future"
-      incompatible_location_number_for_visit_schedule: "must have only one location"
-      incompatbile_visit_shcedule_location_and_depth_level: "must be set with the same depth level and location"
       unknown_depth_level: "unknown depth_level entered"
       unknown_location: "unknown location entered"
       incompatible_place_and_checklist: "must be set with place and checklist from same company"
       incompatible_residence_and_checklist: "must be set with residence and checklist from same company"
       incompatible_spot_and_checklist: "must be set with spot and checklist from same company"
+    visit_prop:
+      incompatible_place_and_checkpoint: "must be set with place and checkpoint from same company"
+      incompatible_residence_and_checkpoint: "must be set with residence and checkpoint from same company"
+      incompatible_spot_and_checkpoint: "must be set with spot and checkpoint from same company"      
     visit_report:
       checkpoints_not_complete: "should all be checked"
       invalid_checkpoint_status: "should be either ok, ko or missing"
