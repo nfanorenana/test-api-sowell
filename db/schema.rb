@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_13_103854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_agencies_on_company_id"
+  end
+
+  create_table "base_issue_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "base_location_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["base_location_type_id"], name: "index_base_issue_types_on_base_location_type_id"
+  end
+
+  create_table "base_location_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "depth_level", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "checklists", force: :cascade do |t|
@@ -53,6 +68,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_companies_on_name", unique: true
+  end
+
+  create_table "exports", force: :cascade do |t|
+    t.string "name"
+    t.integer "status"
+    t.string "url"
+    t.jsonb "params", default: "{}", null: false
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "issue_reports", force: :cascade do |t|
@@ -90,6 +115,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
     t.bigint "location_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "base_issue_type_id", null: false
+    t.index ["base_issue_type_id"], name: "index_issue_types_on_base_issue_type_id"
     t.index ["company_id"], name: "index_issue_types_on_company_id"
     t.index ["location_type_id"], name: "index_issue_types_on_location_type_id"
   end
@@ -101,6 +128,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "nature", default: 0, null: false
+    t.bigint "base_location_type_id", null: false
+    t.index ["base_location_type_id"], name: "index_location_types_on_base_location_type_id"
     t.index ["company_id"], name: "index_location_types_on_company_id"
   end
 
@@ -196,6 +225,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "visit_props", force: :cascade do |t|
+    t.bigint "place_id"
+    t.bigint "checkpoint_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "residence_id"
+    t.bigint "spot_id"
+    t.index ["checkpoint_id"], name: "index_visit_props_on_checkpoint_id"
+    t.index ["place_id"], name: "index_visit_props_on_place_id"
+    t.index ["residence_id"], name: "index_visit_props_on_residence_id"
+    t.index ["spot_id"], name: "index_visit_props_on_spot_id"
+  end
+
   create_table "visit_reports", force: :cascade do |t|
     t.bigint "visit_schedule_id"
     t.bigint "author_id"
@@ -213,11 +255,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
     t.bigint "checklist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "residence_id"
+    t.bigint "spot_id"
     t.index ["checklist_id"], name: "index_visit_schedules_on_checklist_id"
     t.index ["place_id"], name: "index_visit_schedules_on_place_id"
+    t.index ["residence_id"], name: "index_visit_schedules_on_residence_id"
+    t.index ["spot_id"], name: "index_visit_schedules_on_spot_id"
   end
 
   add_foreign_key "agencies", "companies"
+  add_foreign_key "base_issue_types", "base_location_types"
   add_foreign_key "checklists", "companies"
   add_foreign_key "checklists", "location_types"
   add_foreign_key "checkpoints", "checklists"
@@ -229,8 +276,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
   add_foreign_key "issue_reports", "spots"
   add_foreign_key "issue_reports", "users", column: "author_id"
   add_foreign_key "issue_reports", "visit_reports"
+  add_foreign_key "issue_types", "base_issue_types"
   add_foreign_key "issue_types", "companies"
   add_foreign_key "issue_types", "location_types"
+  add_foreign_key "location_types", "base_location_types"
   add_foreign_key "location_types", "companies"
   add_foreign_key "places", "companies"
   add_foreign_key "places", "residences"
@@ -242,8 +291,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_112018) do
   add_foreign_key "spots", "location_types"
   add_foreign_key "spots", "places"
   add_foreign_key "users", "companies"
+  add_foreign_key "visit_props", "checkpoints"
+  add_foreign_key "visit_props", "places"
+  add_foreign_key "visit_props", "residences"
+  add_foreign_key "visit_props", "spots"
   add_foreign_key "visit_reports", "users", column: "author_id"
   add_foreign_key "visit_reports", "visit_schedules"
   add_foreign_key "visit_schedules", "checklists"
   add_foreign_key "visit_schedules", "places"
+  add_foreign_key "visit_schedules", "residences"
+  add_foreign_key "visit_schedules", "spots"
 end

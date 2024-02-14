@@ -3,7 +3,7 @@ class ExportsController < ApplicationController
 
   # GET /exports
   def index
-    @exports = ExportResource.all(params)
+    @exports = Export.select(:name, :status, :url).where(status: 2)
 
     render jsonapi: @exports
   end
