@@ -73,7 +73,7 @@ class PlaceResource < ApplicationResource
       places.where("places.city ILIKE ?", value)
     end
   end
-  
+
   filter :excluded_sector, :string do
     eq do |places, value|
       scope_id = value.first.to_i

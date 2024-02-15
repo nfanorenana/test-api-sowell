@@ -46,5 +46,9 @@ module API
     end
 
     config.autoload_paths << "#{Rails.root}/app/models/observers"
+    config.autoload_paths << "#{Rails.root}/lib"
+    %w[generators tasks templates rails].each do |subdir|
+      Rails.autoloaders.main.ignore("#{Rails.root}/lib/#{subdir}")
+    end
   end
 end
