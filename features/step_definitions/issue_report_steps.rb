@@ -19,8 +19,6 @@ Then(/^I create a new user$/) do
     password_digest: "Coucoutoi",
     company: @company
   )
-
-  p @new_user
 end
 
 And(/^give a role to that user$/) do
@@ -29,35 +27,32 @@ end
 
 Then(/^log in user with basic auth email and password$/) do
   user = User.find_by(email: @new_user.email)
-  @token = generate_token(user)
 end
-
-And(/^get token and add to header$/) do
-  HttpService.headers['Authorization'] = "Bearer #{@token}"
-end
-
-
 
 Then(/^I send the correct parameters to the issue_report endpoint$/) do
-  @body = {
-    message: Faker::Quote.jack_handey,
-    priority: 'medium',
-    author_id: @new_user,
-    # issue_type_id, :integer
-    # place_id, :integer
-    # spot_id, :integer
-    company_id: @company,
-    # visit_report_id, :integer
-    # checkpoint_id, :integer
-    status: 'ongoing',
-    # talks, :array
-    imgs: Faker::Avatar.image
-  }.to_json
-  p HttpService.headers
-  @response = HttpService.post '/issue_reports', body: @body
-  p @response
-end
+  agency = Agency.create(name: Faker::Name.name, company: @company)
+  residence = Residence.create(name: Faker::Name.name, agency: agency, company: @company)
+  place = Place.create(name: Faker::Name.name, zip: Faker::Address.zip_code, city: Faker::Address.city, country: Faker::Address.country, company: @company, residence: residence)
 
-And(/^a new issue report is successfully registered in the database$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+
+  location_type = LocationType.create(name: Faker::Name.name, nature: 0, company: @company)
+  issue_type = IssueType.create(name: Faker::Name.name, location_type: location_type, company: @company)
+
+  header 'Authorization', "Bearer #{generate_token(@new_user)}"
+  params = {
+    data: {
+      type: "issue_reports",
+      attributes: {
+        priority: 'medium',
+        message: Faker::Quote.jack_handey,
+        company_id: @company.id,
+        author_id: @new_user.id,
+        place_id: place.id,
+        issue_type_id: issue_type.id,
+      }
+    }
+  }
+  res = send :post, '/issue_reports', params
+  expect(res.status).to eq(201)
+
 end
