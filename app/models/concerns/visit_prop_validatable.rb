@@ -26,9 +26,4 @@ module VisitPropValidatable
   def checklist
     return checkpoint.checklist
   end
-
-  def check_compatibility_between_location_and_depth_level
-    depth_level = checkpoint.checklist.location_type.base_location_type.depth_level
-    cant_set_incompatible_location_and_depth_level(checklist)
-  end
 end
