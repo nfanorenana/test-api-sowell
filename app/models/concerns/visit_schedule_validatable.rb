@@ -7,7 +7,7 @@ module VisitScheduleValidatable
     validates :due_at, absence: true, unless: -> { checklist&.is_planned }
     validate :cant_set_invalid_due_at, on: :update, unless: -> { skip_due_at_validation || !checklist&.is_planned }
     validate :check_visit_schedule_relation_with_place_residence_or_spot
-    validate :check_compatibility_between_location_and_depth_level
+    validate :cant_set_incompatible_location_and_depth_level
   end
 
   private
@@ -17,13 +17,16 @@ module VisitScheduleValidatable
   end
 
   def check_visit_schedule_relation_with_place_residence_or_spot
-    attributes = ['place_id', 'residence_id', 'spot_id']
+    attributes = [place, residence, spot]
     check_relation_with_place_residence_or_spot(attributes)
   end
 
-  def check_compatibility_between_location_and_depth_level
-    depth_level = checklist.location_type.base_location_type.depth_level
-    cant_set_incompatible_location_and_depth_level(depth_level, checklist)
+  def base_location_type
+    return checklist.location_type.base_location_type
+  end
+
+  def company_id
+    return checklist.company_id
   end
 
 end

@@ -4,7 +4,7 @@ RSpec.describe VisitSchedule, type: :model do
   let(:company) { create(:company) }
 
 
-  let(:base_location_type) { create(:base_location_type, depth_level: 1) }
+  let(:base_location_type) { create(:base_location_type, depth_level: 2) }
   let(:location_type) { create(:location_type, base_location_type: base_location_type)}
 
   let(:other_company) { create(:company) }
@@ -12,7 +12,7 @@ RSpec.describe VisitSchedule, type: :model do
 
   let(:other_place) { create(:place, company: other_company) }
   let!(:other_visit_schedule) { create(:visit_schedule, checklist: other_checklist, place: other_place) }
-  let!(:visit_schedule) { create(:visit_schedule, place: other_place) }
+  let!(:visit_schedule) { create(:visit_schedule, place: other_place, checklist: other_checklist) }
 
 
   describe "#default visit_schedule" do
