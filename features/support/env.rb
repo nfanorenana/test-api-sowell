@@ -3,9 +3,17 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
-
+require 'faker'
+require 'cpf_faker'
+# require 'httparty'
+# require 'httparty/request'
+# require 'httparty/response/headers'
 require 'cucumber/rails'
 
+# ENVIRONMENT = ENV['ENVIRONMENT']
+
+# CONFIG = YAML.load_file(File.dirname(__FILE__) + "/config/#{ENVIRONMENT}.yml")
+# Dir[File.join(File.dirname(__FILE__), '../services/*_services.rb')].each { |file| require_relative file }
 # frozen_string_literal: true
 
 # Capybara defaults to CSS3 selectors rather than XPath.
@@ -57,4 +65,4 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-
+# Cucumber::Rails::Database.autorun_database_cleaner = false

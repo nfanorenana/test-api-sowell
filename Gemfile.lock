@@ -392,6 +392,7 @@ GEM
     tzinfo-data (1.2024.1)
       tzinfo (>= 1.0.0)
     unicode-display_width (2.5.0)
+    wdm (0.1.1)
     webmock (3.19.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -443,10 +444,11 @@ DEPENDENCIES
   shoulda-context
   spreadsheet
   tzinfo-data
+  wdm (>= 0.1.0)
   webmock
 
 RUBY VERSION
    ruby 2.7.6p219
 
 BUNDLED WITH
-   2.4.20
+   2.4.22
