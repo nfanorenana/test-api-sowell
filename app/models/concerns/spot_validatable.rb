@@ -13,4 +13,8 @@ module SpotValidatable
     errors.add(:place,
                I18n.t("validations.common.belonging_to_company"))
   end
+
+  def company_id
+    return place.company_id
+  end
 end

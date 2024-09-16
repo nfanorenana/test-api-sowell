@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_08_120949) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_12_163144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -219,6 +219,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_08_120949) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "visit_props", force: :cascade do |t|
+    t.bigint "place_id"
+    t.bigint "checkpoint_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "residence_id"
+    t.bigint "spot_id"
+    t.index ["checkpoint_id"], name: "index_visit_props_on_checkpoint_id"
+    t.index ["place_id"], name: "index_visit_props_on_place_id"
+    t.index ["residence_id"], name: "index_visit_props_on_residence_id"
+    t.index ["spot_id"], name: "index_visit_props_on_spot_id"
+  end
+
   create_table "visit_reports", force: :cascade do |t|
     t.bigint "visit_schedule_id"
     t.bigint "author_id"
@@ -274,6 +287,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_08_120949) do
   add_foreign_key "spots", "places"
   add_foreign_key "spots", "visit_schedules"
   add_foreign_key "users", "companies"
+  add_foreign_key "visit_props", "checkpoints"
+  add_foreign_key "visit_props", "places"
+  add_foreign_key "visit_props", "residences"
+  add_foreign_key "visit_props", "spots"
   add_foreign_key "visit_reports", "users", column: "author_id"
   add_foreign_key "visit_reports", "visit_schedules"
   add_foreign_key "visit_schedules", "checklists"

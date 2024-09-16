@@ -1,4 +1,4 @@
-en:
+fr:
   errors:
     issue_report:
       blank_talk: "Le paramètre 'talks' est requis"
@@ -42,15 +42,21 @@ en:
       superadmin:
         company_absence: "ne peut pas être ajouté avec un secteur"
       uniqueness: "ne peut pas être ajouté plus d'une fois"
+    visit_schedule_or_prop:
+      require_array: "doit être un tableau"
+      incompatible_location_number: "ne doit avoir qu'une seule localisation"
+      incompatible_location_and_depth_level: "doit être défini avec le même depth level et location"
     visit_schedule:
       invalide_due_at: "doit être fixé avec une date d'échéance sur le futur"
-      incompatible_location_number_for_visit_schedule: "ne doit avoir qu'un seul location"
-      incompatbile_visit_shcedule_location_and_depth_level: "doit être défini avec le même depth level et location"
       unknown_depth_level: "depth_level inconnu"
       unknown_location: "localisation inconnue"
       incompatible_place_and_checklist: "doit être défini avec la place et le checklist de la même company"
       incompatible_residence_and_checklist: "doit être défini avec la résidence et le checklist de la même company"
       incompatible_spot_and_checklist: "doit être défini avec le spot et le checklist de la même company"
+    visit_prop:
+      incompatible_place_and_checkpoint: "doit être défini avec la place et le checkpoint de la même company"
+      incompatible_residence_and_checkpoint: "doit être défini avec la résidence et le checkpoint de la même company"
+      incompatible_spot_and_checkpoint: "doit être défini avec le spot et le checkpoint de la même company"
     visit_report:
       checkpoints_not_complete: "doivent tous avoir été répondus"
       invalid_checkpoint_status: "doivent être ok, ko ou non-concerné"
